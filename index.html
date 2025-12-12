@@ -2,10 +2,12 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Trang chủ - Trương Võ Yến Nhi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Trương Võ Yến Nhi</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header class="header">
   <div class="container header-inner">
     <div class="brand">
@@ -16,14 +18,14 @@
       </div>
     </div>
     <nav class="nav">
-      <a href="index.html" class="nav-link active">Trang chủ</a>
-      <a href="gioithieu.html" class="nav-link">Giới thiệu</a>
-      <a href="sanpham.html" class="nav-link">Sản phẩm</a>
+      <a href="#trang-chu" class="nav-link active">Trang chủ</a>
+      <a href="#gioi-thieu" class="nav-link">Giới thiệu</a>
+      <a href="#san-pham" class="nav-link">Sản phẩm</a>
     </nav>
   </div>
 </header>
 
-<main class="main hero">
+<main id="trang-chu" class="main hero">
   <div class="container hero-grid">
     <section class="hero-text">
       <p class="hero-label">Xin chào, mình là</p>
@@ -42,17 +44,99 @@
   </div>
 </main>
 
+<hr>
+
+<section id="gioi-thieu" class="main about-main">
+  <div class="container">
+    <section class="section-header">
+      <h1 class="section-title">Giới thiệu bản thân</h1>
+      <p class="section-subtitle">
+        Một vài thông tin nhỏ về mình, để bạn có thể hiểu hơn về cô học sinh lớp 12A2 này.
+      </p>
+    </section>
+
+    <section class="cards-grid">
+      <article class="info-card">
+        <h2>Học vấn</h2>
+        <p>
+          Mình hiện là học sinh lớp <strong>12A2</strong> tại
+          <strong>Trường THCS &amp; THPT Minh Hoà</strong>.
+          Ở trường, mình luôn cố gắng hoàn thành tốt các môn học và tham gia các hoạt động chung của lớp.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <h2>Sở thích</h2>
+        <p>
+          Mình rất thích <strong>chụp ảnh</strong> để lưu lại những khoảnh khắc đẹp
+          và <strong>ăn uống</strong>, khám phá những món ngon mới.
+          Những sở thích nhỏ này giúp mình thư giãn sau giờ học.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <h2>Khẩu hiệu</h2>
+        <p>
+          Câu nói mình luôn nhắc bản thân là:
+          <strong>“Hãy là phiên bản tốt hơn mỗi ngày”</strong>.
+          Chỉ cần tiến bộ một chút thôi cũng là thành công rồi.
+        </p>
+      </article>
+    </section>
+  </div>
+</section>
+
+<hr>
+
+<section id="san-pham" class="main projects-main">
+  <div class="container">
+    <section class="section-header">
+      <h1 class="section-title">Sản phẩm học tập</h1>
+      <p class="section-subtitle">
+        Một vài hoạt động và sản phẩm tiêu biểu mà mình đã thực hiện trong quá trình học.
+      </p>
+    </section>
+
+    <section class="cards-grid projects-grid">
+      <article class="project-card">
+        <div class="project-badge">01</div>
+        <h2>Giới thiệu về sách</h2>
+        <p>
+          Bài giới thiệu một cuốn sách mình yêu thích.
+          Qua đó mình luyện cách đọc hiểu, tóm tắt nội dung và chia sẻ cảm nhận của bản thân.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <div class="project-badge">02</div>
+        <h2>Thuyết trình văn học</h2>
+        <p>
+          Thực hiện thuyết trình về một tác phẩm văn học.
+          Hoạt động này giúp mình tự tin hơn khi đứng trước lớp và trình bày suy nghĩ của mình.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <div class="project-badge">03</div>
+        <h2>Phác hoạ tranh</h2>
+        <p>
+          Tập phác hoạ những bức tranh đơn giản.
+          Đây là cách mình thể hiện sự sáng tạo và cảm nhận cái đẹp xung quanh.
+        </p>
+      </article>
+    </section>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-contact-box">
     <h3>Liên hệ với mình</h3>
-
     <p>
       Email:
       <a href="mailto:Truongvoyennhi1601@gmail.com">
         Truongvoyennhi1601@gmail.com
       </a>
     </p>
-
     <p>
       Facebook:
       <a href="https://www.facebook.com/share/1G6F4j9G7D/?mibextid=wwXIfr" target="_blank">
@@ -60,7 +144,6 @@
       </a>
     </p>
   </div>
-
   <p class="footer-copy">
     © 2025 Trương Võ Yến Nhi
   </p>
