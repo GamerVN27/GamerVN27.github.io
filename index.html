@@ -1,125 +1,284 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Trương Võ Yến Nhi</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+/* Thiết lập chung */
+:root {
+  --primary: #ff7eb3;
+  --secondary: #ff758c;
+  --dark: #2d3436;
+  --glass: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+}
 
-  <div class="mesh-gradient">
-    <div class="ball ball-1"></div>
-    <div class="ball ball-2"></div>
-    <div class="ball ball-3"></div>
-  </div>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth; /* Cuộn trang mượt mà */
+}
 
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-mark">N</div>
-        <span class="brand-name">Yến Nhi</span>
-      </div>
-      <nav class="nav">
-        <a href="#trang-chu" class="nav-link">Trang chủ</a>
-        <a href="#gioi-thieu" class="nav-link">Giới thiệu</a>
-        <a href="#san-pham" class="nav-link">Sản phẩm</a>
-      </nav>
-    </div>
-  </header>
+body {
+  background: #0f0c29;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
 
-  <section id="trang-chu" class="container hero">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <span class="badge">✨ Học sinh lớp 12A2</span>
-        <h1 class="hero-name">Trương Võ <br> Yến Nhi</h1>
-        <p class="hero-tagline">“Hãy là phiên bản tốt hơn mỗi ngày”</p>
-        <p class="hero-desc">Chào mừng bạn đến với Portfolio của mình. Một chút cá tính, một chút đam mê và thật nhiều nỗ lực mỗi ngày.</p>
-        <div class="hero-actions">
-          <a href="#gioi-thieu" class="btn-main">Tìm hiểu về Nhi</a>
-          <div class="social-mini">
-            <a href="https://www.facebook.com/share/1G6F4j9G7D/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="mailto:Truongvoyennhi1601@gmail.com"><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="avatar-container">
-          <img src="images/avatar.jpg" alt="Yến Nhi" class="avatar-img">
-          <div class="float-icon icon-1">📸</div>
-          <div class="float-icon icon-2">💖</div>
-          <div class="float-icon icon-3">🌸</div>
-        </div>
-      </div>
-    </div>
-  </section>
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-  <section id="gioi-thieu" class="container section">
-    <div class="section-title">
-      <h2>Giới thiệu bản thân</h2>
-      <p>Một vài thông tin nhỏ về mình, để bạn có thể hiểu hơn về cô học sinh lớp 12A2 này.</p>
-      <div class="line"></div>
-    </div>
-    
-    <div class="cards-grid">
-      <div class="card glass">
-        <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-        <h3>Học vấn</h3>
-        <p>Mình hiện là học sinh lớp <strong>12A2</strong> tại <strong>Trường THCS & THPT Minh Hoà</strong>. Ở trường, mình luôn cố gắng hoàn thành tốt các môn học.</p>
-      </div>
+/* Hiệu ứng Nền Mesh Gradient */
+.mesh-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Đẩy ra sau cùng */
+  background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+  overflow: hidden;
+}
 
-      <div class="card glass">
-        <div class="card-icon"><i class="fas fa-camera-retro"></i></div>
-        <h3>Sở thích</h3>
-        <p>Mình rất thích <strong>chụp ảnh</strong> để lưu lại khoảnh khắc đẹp và <strong>ăn uống</strong>, khám phá những món ngon mới cùng bạn bè.</p>
-      </div>
+.ball {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: move 20s infinite alternate;
+  z-index: -1;
+}
 
-      <div class="card glass">
-        <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
-        <h3>Khẩu hiệu</h3>
-        <p>Câu nói mình luôn nhắc bản thân: <strong>“Hãy là phiên bản tốt hơn mỗi ngày”</strong>. Mỗi bước đi nhỏ đều dẫn đến thành công lớn.</p>
-      </div>
-    </div>
-  </section>
+.ball-1 { width: 400px; height: 400px; background: var(--primary); top: -10%; left: -10%; }
+.ball-2 { width: 350px; height: 350px; background: #6c5ce7; bottom: -5%; right: -5%; animation-delay: -5s; }
+.ball-3 { width: 300px; height: 300px; background: #00cec9; top: 40%; left: 50%; animation-delay: -10s; }
 
-  <section id="san-pham" class="container section">
-    <div class="section-title">
-      <h2>Sản phẩm học tập</h2>
-      <p>Một vài hoạt động và sản phẩm tiêu biểu mình đã thực hiện.</p>
-      <div class="line"></div>
-    </div>
+@keyframes move {
+  from { transform: translate(0, 0); }
+  to { transform: translate(50px, 100px); }
+}
 
-    <div class="cards-grid">
-      <div class="card glass project">
-        <span class="project-num">01</span>
-        <div class="card-icon"><i class="fas fa-book"></i></div>
-        <h3>Giới thiệu về sách</h3>
-        <p>Rèn luyện kỹ năng đọc hiểu và chia sẻ những giá trị nhân văn từ sách đến mọi người xung quanh.</p>
-      </div>
+/* Header & Nav */
+.header {
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background: rgba(15, 12, 41, 0.5); /* Thêm nền nhẹ để dễ đọc menu */
+}
 
-      <div class="card glass project">
-        <span class="project-num">02</span>
-        <div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-        <h3>Thuyết trình văn học</h3>
-        <p>Giúp mình tự tin hơn khi đứng trước lớp và trình bày tư duy về các tác phẩm văn học ý nghĩa.</p>
-      </div>
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-      <div class="card glass project">
-        <span class="project-num">03</span>
-        <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
-        <h3>Phác hoạ tranh</h3>
-        <p>Nơi mình thỏa sức sáng tạo và gửi gắm cảm xúc qua những nét vẽ phác họa giản đơn.</p>
-      </div>
-    </div>
-  </section>
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  <footer class="footer">
-    <div class="container">
-      <p>Kết nối: <strong>Truongvoyennhi1601@gmail.com</strong></p>
-      <p class="footer-copy">© 2025 Trương Võ Yến Nhi - Lớp 12A2</p>
-    </div>
-  </footer>
+.brand-mark {
+  background: var(--primary);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: bold;
+}
 
-</body>
-</html>
+.nav {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-link:hover { color: var(--primary); }
+
+/* Hero Section */
+.hero {
+  padding: 80px 0;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.badge {
+  background: var(--glass);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  display: inline-block;
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 8vw, 4rem); /* Co giãn theo màn hình */
+  line-height: 1.1;
+  margin: 20px 0;
+  background: linear-gradient(to right, #fff, var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 15px;
+  color: #dfe6e9;
+}
+
+.hero-actions {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-main {
+  background: var(--primary);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(255, 126, 179, 0.3);
+}
+
+.btn-main:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 15px 25px rgba(255, 126, 179, 0.5); 
+}
+
+.social-mini a {
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: 0.3s;
+}
+
+.social-mini a:hover { color: var(--primary); }
+
+/* Avatar Animation */
+.avatar-container {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.avatar-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  border: 5px solid rgba(255,255,255,0.2);
+  animation: blob 8s infinite ease-in-out;
+}
+
+@keyframes blob {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+}
+
+.float-icon {
+  position: absolute;
+  background: white;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.icon-1 { top: 0; right: 0; }
+.icon-2 { bottom: 20%; left: -20px; }
+.icon-3 { top: 50%; right: -20px; }
+
+/* Cards & Sections */
+.section { padding: 80px 0; }
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.line {
+  width: 60px;
+  height: 4px;
+  background: var(--primary);
+  margin: 15px auto;
+  border-radius: 2px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-10px);
+  border-color: var(--primary);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.project-num {
+  font-weight: bold;
+  opacity: 0.1;
+  font-size: 3rem;
+  float: right;
+  line-height: 1;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 50px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 50px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-actions { justify-content: center; }
+  .hero-name { font-size: 3rem; }
+  .nav { display: none; } 
+  .avatar-container { max-width: 280px; margin-top: 40px; }
+}
