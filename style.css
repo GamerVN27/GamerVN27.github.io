@@ -1,6 +1,21 @@
-/* ========== Thiết lập chung ========== */
+/* ========== 1. THIẾT LẬP CHUNG & FONTS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
+}
+
+:root {
+  /* Palette Hồng Tinh Tế hơn */
+  --pink-primary: #ec4899;
+  --pink-dark: #be185d;
+  --pink-light: #fce7f3;
+  --pink-glass: rgba(255, 255, 255, 0.65); /* Màu kính */
+  --pink-shadow: rgba(236, 72, 153, 0.25);
+  --text-main: #1f2937;
+  --text-sub: #4b5563;
+  --radius-md: 16px;
+  --radius-lg: 24px;
 }
 
 html, body {
@@ -8,116 +23,113 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-}
-
-/* ===== PALETTE HỒNG ===== */
-:root {
-  --pink-main: #ec4899;
-  --pink-dark: #db2777;
-  --pink-light: #fce7f3;
-  --pink-soft: #fff1f2;
-  --pink-border: rgba(236, 72, 153, 0.6);
+  scroll-behavior: smooth; /* Cuộn mượt */
 }
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #111827;
-  background: radial-gradient(
-    circle at top left,
-    var(--pink-light),
-    #ffffff 45%,
-    var(--pink-soft) 85%
-  );
+  font-family: 'Quicksand', system-ui, sans-serif; /* Font chữ tròn trịa, dễ thương */
+  color: var(--text-main);
+  /* Nền Gradient kết hợp Grain nhẹ (nếu muốn cầu kỳ hơn) */
+  background: radial-gradient(at 0% 0%, hsla(328,76%,95%,1) 0, transparent 50%), 
+              radial-gradient(at 50% 100%, hsla(339,49%,90%,1) 0, transparent 50%),
+              #ffffff;
   position: relative;
 }
 
-/* ========== HIỆU ỨNG TRÁI TIM NỀN ========== */
+/* Custom Scrollbar (Thanh cuộn đẹp) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff0f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #fbcfe8;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-primary);
+}
+
+/* ========== 2. BACKGROUND ĐỘNG (HEARTS) CẢI TIẾN ========== */
 .heart-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0; /* Thay cho top/left/width/height 100% */
   z-index: -1;
+  overflow: hidden;
   pointer-events: none;
 }
 
 .heart {
   position: absolute;
-  background-color: var(--pink-main);
-  display: inline-block;
+  background-color: var(--pink-primary);
   width: 20px;
   height: 20px;
-  margin: 0 10px;
-  opacity: 0.15;
-  transform: rotate(-45deg);
-  animation: float-hearts 15s linear infinite;
+  opacity: 0;
   bottom: -50px;
+  transform: rotate(-45deg);
+  /* Animation kết hợp bay lên và lắc lư */
+  animation: float-sway 15s linear infinite;
 }
 
 .heart::before,
 .heart::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: var(--pink-main);
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
   border-radius: 50%;
 }
 
-.heart::before {
-  top: -10px;
-  left: 0;
-}
+.heart::before { top: -50%; left: 0; }
+.heart::after { top: 0; left: 50%; }
 
-.heart::after {
-  top: 0;
-  left: 10px;
-}
-
-@keyframes float-hearts {
+/* Keyframe mới: Bay lên + Lắc lư sang 2 bên */
+@keyframes float-sway {
   0% {
-    transform: rotate(-45deg) translateY(0) scale(0.8);
+    transform: rotate(-45deg) translate(0, 0) scale(0.8);
     opacity: 0;
   }
-  10% {
-    opacity: 0.15;
-  }
-  90% {
-    opacity: 0.1;
-  }
+  10% { opacity: 0.3; }
+  25% { transform: rotate(-45deg) translate(20px, -25vh) scale(1); }
+  50% { transform: rotate(-45deg) translate(-20px, -50vh) scale(1.1); }
+  75% { transform: rotate(-45deg) translate(20px, -75vh) scale(1); }
   100% {
-    transform: rotate(-45deg) translateY(-110vh) scale(1.2);
+    transform: rotate(-45deg) translate(0, -110vh) scale(0.8);
     opacity: 0;
   }
 }
 
-/* Tạo các vị trí ngẫu nhiên cho trái tim bằng CSS (giả lập) */
-.heart:nth-child(1) { left: 10%; animation-duration: 12s; width: 15px; height: 15px; }
-.heart:nth-child(1)::before, .heart:nth-child(1)::after { width: 15px; height: 15px; }
-.heart:nth-child(1)::before { top: -7.5px; } .heart:nth-child(1)::after { left: 7.5px; }
+/* Random vị trí và tốc độ cho tim */
+.heart:nth-child(1) { left: 10%; animation-duration: 12s; width: 15px; height: 15px; animation-delay: 0s; }
+.heart:nth-child(2) { left: 20%; animation-duration: 18s; width: 30px; height: 30px; animation-delay: 2s; filter: blur(2px); } /* Tim mờ tạo chiều sâu */
+.heart:nth-child(3) { left: 35%; animation-duration: 15s; width: 20px; height: 20px; animation-delay: 5s; }
+.heart:nth-child(4) { left: 50%; animation-duration: 20s; width: 10px; height: 10px; animation-delay: 1s; }
+.heart:nth-child(5) { left: 65%; animation-duration: 14s; width: 25px; height: 25px; animation-delay: 4s; filter: blur(1px); }
+.heart:nth-child(6) { left: 80%; animation-duration: 22s; width: 18px; height: 18px; animation-delay: 7s; }
 
-.heart:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; }
-.heart:nth-child(3) { left: 40%; animation-duration: 15s; animation-delay: 5s; width: 25px; height: 25px; }
-.heart:nth-child(3)::before, .heart:nth-child(3)::after { width: 25px; height: 25px; }
-.heart:nth-child(3)::before { top: -12.5px; } .heart:nth-child(3)::after { left: 12.5px; }
-
-.heart:nth-child(4) { left: 55%; animation-duration: 20s; animation-delay: 1s; }
-.heart:nth-child(5) { left: 70%; animation-duration: 14s; animation-delay: 8s; }
-.heart:nth-child(6) { left: 85%; animation-duration: 22s; animation-delay: 3s; }
-
-/* ========== Header + Nav ========== */
+/* ========== 3. HEADER & NAV ========== */
 .header {
-  background: linear-gradient(to right, var(--pink-dark), var(--pink-main));
-  color: #fff;
-  padding: 12px 0;
-  box-shadow: 0 10px 25px rgba(236, 72, 153, 0.35);
+  background: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+  backdrop-filter: blur(15px); /* Hiệu ứng kính mờ mạnh */
+  border-bottom: 1px solid rgba(236, 72, 153, 0.2);
+  padding: 15px 0;
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* Class tiện ích để căn giữa nội dung */
+.container {
+  width: 100%;
+  max-width: 1100px; /* Giới hạn chiều rộng để đẹp hơn trên PC */
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .header-inner {
@@ -129,237 +141,259 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .brand-mark {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  background: #f472b6;
-  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
+  font-weight: 800;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px var(--pink-shadow);
 }
 
 .brand-name {
-  font-weight: 600;
-  font-size: 1.05rem;
-}
-
-.brand-sub {
-  font-size: 0.78rem;
-  opacity: 0.9;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--pink-dark);
 }
 
 .nav {
   display: flex;
-  gap: 18px;
+  gap: 24px;
 }
 
 .nav-link {
-  color: #ffe4e6;
+  color: var(--text-sub);
   text-decoration: none;
+  font-weight: 600;
   font-size: 0.95rem;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
+  position: relative;
+  transition: color 0.3s;
 }
 
-.nav-link:hover {
-  border-color: #fecdd3;
+.nav-link:hover, .nav-link.active {
+  color: var(--pink-primary);
 }
 
-.nav-link.active {
-  border-color: #ffffff;
+/* Hiệu ứng gạch chân động */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--pink-primary);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
 }
 
-/* ========== Main chung ========== */
+/* ========== 4. MAIN LAYOUT & HERO ========== */
 .main {
   flex: 1;
-  display: flex;
-  padding: 40px 0 50px;
-  z-index: 1;
-}
-
-/* ========== Hero ========= */
-.hero {
-  align-items: center;
+  padding: 60px 0 80px;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 40px;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
   align-items: center;
 }
 
 .hero-label {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.75rem;
+  display: inline-block;
+  background: var(--pink-light);
   color: var(--pink-dark);
-  margin-bottom: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
 }
 
 .hero-name {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin: 0 0 6px;
+  font-size: 3rem; /* To hơn */
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.1;
+  /* Chữ Gradient */
+  background: linear-gradient(to right, #be185d, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-tagline {
-  font-size: 1.05rem;
+  font-size: 1.25rem;
+  color: var(--text-sub);
+  margin-bottom: 24px;
   font-weight: 500;
-  color: var(--pink-main);
-  margin: 0 0 14px;
 }
 
 .hero-desc {
-  max-width: 520px;
-  color: #4b5563;
-  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-sub);
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+}
+
+/* Button CTA (Kêu gọi hành động) */
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+  color: white;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 10px 20px var(--pink-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(236, 72, 153, 0.4);
 }
 
 .hero-avatar-wrapper {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.hero-avatar-ring {
-  width: 230px;
-  height: 230px;
-  border-radius: 999px;
-  background: radial-gradient(circle at 30% 20%, #fff0f6, #fde7f3);
-  display: flex;
-  align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 60px rgba(236, 72, 153, 0.35);
-  border: 5px solid var(--pink-main);
-  animation: float 5s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+/* Vòng tròn sau Avatar */
+.hero-avatar-bg {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, var(--pink-light) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse-glow 3s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from { transform: scale(0.9); opacity: 0.7; }
+  to { transform: scale(1.1); opacity: 1; }
 }
 
 .hero-avatar {
-  width: 170px;
-  height: 170px;
-  border-radius: 999px;
+  width: 280px;
+  height: 280px;
+  border-radius: 40px; /* Bo góc mềm mại thay vì tròn hẳn */
   object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1), 0 0 0 8px rgba(255, 255, 255, 0.5);
+  transform: rotate(3deg); /* Nghiêng nhẹ nghệ thuật */
+  transition: transform 0.3s;
 }
 
-/* ========== Section header ========= */
+.hero-avatar:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* ========== 5. CARDS & GLASSMORPHISM ========== */
 .section-header {
-  margin-bottom: 26px;
+  margin: 60px 0 30px;
+  text-align: left;
 }
 
 .section-title {
-  font-size: 1.6rem;
-  margin: 0 0 6px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--pink-dark);
   position: relative;
   display: inline-block;
+  padding-bottom: 8px;
 }
-
 .section-title::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
-  bottom: -6px;
-  width: 45%;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(to right, var(--pink-main), #fb7185);
+  bottom: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--pink-primary);
+  border-radius: 2px;
 }
 
-.section-subtitle {
-  margin: 0;
-  color: #4b5563;
-  font-size: 0.96rem;
-}
-
-/* ========== Cards ========= */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Tự động xuống dòng */
+  gap: 24px;
 }
 
-.info-card,
-.project-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  padding: 16px 18px 18px;
-  box-shadow: 0 14px 30px rgba(236, 72, 153, 0.12);
-  border: 1px solid #fbcfe8;
-  font-size: 0.95rem;
-  transition: 0.18s;
+/* Card cải tiến */
+.info-card, .project-card {
+  background: var(--pink-glass);
+  backdrop-filter: blur(12px) saturate(160%); /* Hiệu ứng kính */
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
 }
 
-.info-card:hover,
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(236, 72, 153, 0.25);
-  background: rgba(255, 255, 255, 0.9);
+.info-card h3 { margin-top: 0; color: var(--pink-dark); }
+.info-card p { color: var(--text-sub); line-height: 1.6; margin-bottom: 0; }
+
+.info-card:hover, .project-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+  border-color: #fff;
 }
 
-/* ========== Footer ========= */
+/* ========== 6. FOOTER ========== */
 .footer {
-  padding: 20px;
-  background: linear-gradient(to right, #831843, #9d174d);
-  color: #ffe4e6;
-}
-
-.footer-contact-box {
-  max-width: 900px;
-  margin: 0 auto 12px;
-  padding: 16px 20px;
-  border-radius: 16px;
-  border: 1.5px dashed rgba(251, 182, 206, 0.6);
-  background: rgba(236, 72, 153, 0.12);
-}
-
-.footer-contact-box a {
-  color: #fce7f3;
+  background: linear-gradient(to top, #fff1f2, transparent);
+  padding: 40px 0 30px;
+  margin-top: auto;
+  text-align: center;
+  border-top: 1px solid rgba(236, 72, 153, 0.1);
 }
 
 .footer-copy {
-  text-align: center;
-  font-size: 0.85rem;
-  opacity: 0.9;
+  color: var(--text-sub);
+  font-size: 0.9rem;
 }
 
-/* ========== Responsive ========= */
+/* ========== 7. RESPONSIVE ========== */
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
+  }
+  
+  .hero-grid {
+    /* Đảo ngược thứ tự trên mobile: ảnh lên trên, chữ xuống dưới nếu muốn */
+    /* display: flex; flex-direction: column-reverse; */
   }
 
-  .cards-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .hero-avatar-wrapper {
+    margin-bottom: 20px;
   }
-}
-
-@media (max-width: 640px) {
-  .cards-grid {
-    grid-template-columns: 1fr;
+  
+  .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
-
-  .hero-name {
-    font-size: 1.8rem;
-  }
+  .section-header { text-align: center; }
 }
