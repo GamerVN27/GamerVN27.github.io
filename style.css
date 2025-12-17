@@ -7,6 +7,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 /* ===== PALETTE HỒNG ===== */
@@ -30,14 +31,83 @@ body {
     #ffffff 45%,
     var(--pink-soft) 85%
   );
+  position: relative;
 }
 
-/* Container chung */
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+/* ========== HIỆU ỨNG TRÁI TIM NỀN ========== */
+.heart-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
+
+.heart {
+  position: absolute;
+  background-color: var(--pink-main);
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  opacity: 0.15;
+  transform: rotate(-45deg);
+  animation: float-hearts 15s linear infinite;
+  bottom: -50px;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--pink-main);
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+@keyframes float-hearts {
+  0% {
+    transform: rotate(-45deg) translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.15;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: rotate(-45deg) translateY(-110vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Tạo các vị trí ngẫu nhiên cho trái tim bằng CSS (giả lập) */
+.heart:nth-child(1) { left: 10%; animation-duration: 12s; width: 15px; height: 15px; }
+.heart:nth-child(1)::before, .heart:nth-child(1)::after { width: 15px; height: 15px; }
+.heart:nth-child(1)::before { top: -7.5px; } .heart:nth-child(1)::after { left: 7.5px; }
+
+.heart:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; }
+.heart:nth-child(3) { left: 40%; animation-duration: 15s; animation-delay: 5s; width: 25px; height: 25px; }
+.heart:nth-child(3)::before, .heart:nth-child(3)::after { width: 25px; height: 25px; }
+.heart:nth-child(3)::before { top: -12.5px; } .heart:nth-child(3)::after { left: 12.5px; }
+
+.heart:nth-child(4) { left: 55%; animation-duration: 20s; animation-delay: 1s; }
+.heart:nth-child(5) { left: 70%; animation-duration: 14s; animation-delay: 8s; }
+.heart:nth-child(6) { left: 85%; animation-duration: 22s; animation-delay: 3s; }
 
 /* ========== Header + Nav ========== */
 .header {
@@ -117,6 +187,7 @@ body {
   flex: 1;
   display: flex;
   padding: 40px 0 50px;
+  z-index: 1;
 }
 
 /* ========== Hero ========= */
@@ -175,6 +246,12 @@ body {
   justify-content: center;
   box-shadow: 0 25px 60px rgba(236, 72, 153, 0.35);
   border: 5px solid var(--pink-main);
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 .hero-avatar {
@@ -222,7 +299,8 @@ body {
 
 .info-card,
 .project-card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
   border-radius: 16px;
   padding: 16px 18px 18px;
   box-shadow: 0 14px 30px rgba(236, 72, 153, 0.12);
@@ -235,6 +313,7 @@ body {
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 18px 40px rgba(236, 72, 153, 0.25);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* ========== Footer ========= */
