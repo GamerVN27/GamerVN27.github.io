@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Trương Võ Yến Nhi</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-  <div class="heart-bg">
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
+  <div class="bg-animation">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
   </div>
 
   <header class="header">
@@ -22,8 +20,7 @@
       <div class="brand">
         <div class="brand-mark">N</div>
         <div class="brand-text">
-          <span class="brand-name">Trương Võ Yến Nhi</span>
-          <span class="brand-sub">Portfolio mini</span>
+          <span class="brand-name">Yến Nhi</span>
         </div>
       </div>
       <nav class="nav">
@@ -37,80 +34,67 @@
   <main id="trang-chu" class="main hero container">
     <div class="hero-grid">
       <section class="hero-text">
-        <span class="hero-label">Xin chào, mình là</span>
-        <h1 class="hero-name">Trương Võ Yến Nhi</h1>
+        <span class="hero-label">🌸 Xin chào, mình là</span>
+        <h1 class="hero-name">Trương Võ <br>Yến Nhi</h1>
         <p class="hero-tagline">“Hãy là phiên bản tốt hơn mỗi ngày”</p>
         <p class="hero-desc">
-          Đây là website nhỏ mình dùng để giới thiệu bản thân và một số sản phẩm học tập. 
-          Mong rằng qua trang web này, bạn sẽ hiểu thêm về mình và những điều mình đang cố gắng mỗi ngày.
+          Chào mừng bạn đến với không gian nhỏ của mình. Đây là nơi mình lưu giữ hành trình trưởng thành và những nỗ lực nhỏ bé tại lớp 12A2.
         </p>
-        <a href="#gioi-thieu" class="btn-primary">Tìm hiểu thêm</a>
+        <div class="hero-btns">
+            <a href="#gioi-thieu" class="btn-primary">Khám phá ngay</a>
+            <a href="https://facebook.com" class="btn-outline"><i class="fab fa-facebook"></i></a>
+        </div>
       </section>
       
       <div class="hero-avatar-wrapper">
-        <div class="hero-avatar-bg"></div> <img src="images/avatar.jpg" alt="Ảnh đại diện Yến Nhi" class="hero-avatar">
+        <div class="avatar-frame">
+            <img src="images/avatar.jpg" alt="Ảnh đại diện" class="hero-avatar">
+        </div>
+        <div class="floating-item item-1">✨</div>
+        <div class="floating-item item-2">💖</div>
+        <div class="floating-item item-3">📸</div>
       </div>
     </div>
   </main>
 
-  <section id="gioi-thieu" class="main about-main container">
-    <header class="section-header">
-      <h2 class="section-title">Giới thiệu bản thân</h2>
-      <p class="section-subtitle">Một vài thông tin nhỏ về cô học sinh lớp 12A2.</p>
-    </header>
+  <section id="gioi-thieu" class="container section-padding">
+    <div class="section-header">
+      <h2 class="section-title">Về Bản Thân</h2>
+      <p>Một chút màu sắc về cá tính của Nhi</p>
+    </div>
 
     <div class="cards-grid">
       <article class="info-card">
+        <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
         <h3>Học vấn</h3>
-        <p>Học sinh lớp <strong>12A2</strong> tại trường <strong>THCS & THPT Minh Hoà</strong>. Luôn nỗ lực trong học tập và năng nổ trong các phong trào lớp.</p>
+        <p>Học sinh lớp <strong>12A2</strong> - THCS & THPT Minh Hoà. Luôn cháy hết mình với mục tiêu đại học.</p>
       </article>
 
       <article class="info-card">
+        <div class="card-icon"><i class="fas fa-camera"></i></div>
         <h3>Sở thích</h3>
-        <p>Đam mê <strong>chụp ảnh</strong> lưu giữ khoảnh khắc và thích <strong>khám phá ẩm thực</strong> để thư giãn sau những giờ học căng thẳng.</p>
+        <p>Nhi yêu việc <strong>chụp ảnh</strong> và <strong>ẩm thực</strong>. Những điều đơn giản làm cuộc sống rạng rỡ.</p>
       </article>
 
       <article class="info-card">
-        <h3>Khát vọng</h3>
-        <p>Không ngừng học hỏi để tiến bộ. Với mình, mỗi ngày hoàn thiện hơn 1% so với hôm qua đã là một thành công lớn.</p>
+        <div class="card-icon"><i class="fas fa-seedling"></i></div>
+        <h3>Mục tiêu</h3>
+        <p>Kiên trì và nỗ lực. Với mình, mỗi bước đi nhỏ đều dẫn đến những hành trình lớn lao.</p>
       </article>
     </div>
   </section>
 
-  <section id="san-pham" class="main projects-main container">
-    <header class="section-header">
-      <h2 class="section-title">Sản phẩm học tập</h2>
-      <p class="section-subtitle">Những dấu ấn nhỏ trong quá trình rèn luyện tại trường.</p>
-    </header>
-
-    <div class="cards-grid">
-      <article class="project-card">
-        <div class="project-badge">01</div>
-        <h3>Giới thiệu về sách</h3>
-        <p>Rèn luyện kỹ năng đọc hiểu, tóm tắt và chia sẻ cảm hứng từ những trang sách hay đến mọi người.</p>
-      </article>
-
-      <article class="project-card">
-        <div class="project-badge">02</div>
-        <h3>Thuyết trình văn học</h3>
-        <p>Phân tích các tác phẩm văn học, giúp mình tự tin trình bày quan điểm trước đám đông.</p>
-      </article>
-
-      <article class="project-card">
-        <div class="project-badge">03</div>
-        <h3>Phác hoạ tranh</h3>
-        <p>Những nét vẽ đơn giản nhưng chứa đựng sự sáng tạo và cái nhìn yêu đời về thế giới xung quanh.</p>
-      </article>
+  <footer class="footer">
+    <div class="container">
+        <div class="footer-box">
+            <h3>Keep in touch!</h3>
+            <div class="social-links">
+                <a href="mailto:Truongvoyennhi1601@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+            </div>
+            <p class="footer-copy">© 2025 - Thiết kế bởi Yến Nhi</p>
+        </div>
     </div>
-  </section>
-
-  <footer class="footer container">
-    <div class="footer-contact-box">
-      <h3>Kết nối với Nhi nhé!</h3>
-      <p>Email: <a href="mailto:Truongvoyennhi1601@gmail.com">Truongvoyennhi1601@gmail.com</a></p>
-      <p>Facebook: <a href="https://www.facebook.com/share/1G6F4j9G7D/?mibextid=wwXIfr" target="_blank">Nhi Trương</a></p>
-    </div>
-    <p class="footer-copy">© 2025 Trương Võ Yến Nhi 12A2.</p>
   </footer>
 
 </body>
